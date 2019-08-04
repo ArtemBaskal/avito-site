@@ -1,11 +1,13 @@
 import React from "react";
 import ProductsList from "./ProductsList";
-import Filter from "./Filter";
+import CategoryFilter from "./CategoryFilter";
+import PriceFilter from "./PriceFilter";
 
 const App = () => {
   return (
     <div>
-      <Filter />
+      <CategoryFilter />
+      <PriceFilter />
       <ProductsList />
     </div>
   );

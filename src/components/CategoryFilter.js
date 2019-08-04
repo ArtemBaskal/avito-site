@@ -2,9 +2,14 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { filterByCategory } from "../actions";
 
-const categories = ["immovable", "cameras", "auto", "laptops"];
+const categories = [
+  { ru: "НЕДВИЖИМОСТЬ", en: "immovable" },
+  { ru: "ФОТОАППАРАТЫ", en: "cameras" },
+  { ru: "АВТОМОБИЛИ", en: "auto" },
+  { ru: "НОУТБУКИ", en: "laptops" }
+];
 
-const Filter = () => {
+const FilterByCategory = () => {
   const dispatch = useDispatch();
 
   const handleFilterSelect = e => {
@@ -23,8 +28,8 @@ const Filter = () => {
         </option>
         {categories &&
           categories.map(category => (
-            <option key={category} value={category}>
-              {category}
+            <option key={category.en} value={category.en}>
+              {category.ru}
             </option>
           ))}
       </select>
@@ -32,4 +37,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default FilterByCategory;

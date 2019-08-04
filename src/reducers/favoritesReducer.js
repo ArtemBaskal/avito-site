@@ -1,7 +1,6 @@
 import { ADD_ITEM_TO_FAVORITES } from "../actions/types";
 
 export default (state = [], action) => {
-  console.log(state, action);
   switch (action.type) {
     case ADD_ITEM_TO_FAVORITES:
       try {

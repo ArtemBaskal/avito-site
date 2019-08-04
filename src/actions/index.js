@@ -2,7 +2,8 @@ import axios from "axios";
 import {
   FETCH_PRODUCTS,
   ADD_ITEM_TO_FAVORITES,
-  FILTER_BY_CATEGORY
+  FILTER_BY_CATEGORY,
+  FILTER_BY_PRICE
 } from "./types";
 
 export const fetchProducts = () => async dispatch => {
@@ -31,5 +32,12 @@ export const filterByCategory = category => {
   return {
     type: FILTER_BY_CATEGORY,
     payload: category
+  };
+};
+
+export const filterByPrice = minMaxPrice => {
+  return {
+    type: FILTER_BY_PRICE,
+    payload: minMaxPrice
   };
 };

@@ -1,4 +1,8 @@
-import { FETCH_PRODUCTS, FILTER_BY_CATEGORY } from "../actions/types";
+import {
+  FETCH_PRODUCTS,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_PRICE
+} from "../actions/types";
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -11,6 +15,19 @@ export default (state = [], action) => {
         ),
         sellers: state.sellers
       };
+    case FILTER_BY_PRICE: {
+      let { minPrice, maxPrice } = action.payload;
+
+      minPrice = parseFloat(minPrice || -Infinity);
+      maxPrice = parseFloat(maxPrice || Infinity);
+
+      return {
+        products: state.products.filter(
+          ({ price }) => price > minPrice && price < maxPrice
+        ),
+        sellers: state.sellers
+      };
+    }
     default:
       return state;
   }
