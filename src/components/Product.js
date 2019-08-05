@@ -14,7 +14,7 @@ const Product = props => {
       <div>{title}</div>
       <img src={pictures[0]} alt={title} />
       <div>Ещё {pictures.length} фото</div>
-      <div>{price} ₽</div>
+      <div>{price ? `${price} ₽` : null}</div>
       <div>{sellerName}</div>
       <div>{sellerRating}</div>
       <br />

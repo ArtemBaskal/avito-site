@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCTS,
   ADD_ITEM_TO_FAVORITES,
   FILTER_BY_CATEGORY,
-  FILTER_BY_PRICE
+  FILTER_BY_PRICE,
+  SORT_BY_PARAM
 } from "./types";
 
 export const fetchProducts = () => async dispatch => {
@@ -39,5 +40,12 @@ export const filterByPrice = minMaxPrice => {
   return {
     type: FILTER_BY_PRICE,
     payload: minMaxPrice
+  };
+};
+
+export const sortByParam = param => {
+  return {
+    type: SORT_BY_PARAM,
+    payload: param
   };
 };
