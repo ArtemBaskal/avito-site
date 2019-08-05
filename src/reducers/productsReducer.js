@@ -37,6 +37,17 @@ export default (state = [], action) => {
     case SORT_BY_PARAM:
       // const { products, sellers } = state;
 
+      //TODO: Опционально - добавить сортировку по убыванию
+      const sortByPriceExpensive = products =>
+        products
+          .map(product => {
+            if (!product.price) {
+              product.price = 0;
+            }
+            return product;
+          })
+          .sort((a, b) => b.price - a.price);
+
       const sortByPrice = products =>
         products
           .map(product => {
@@ -63,6 +74,9 @@ export default (state = [], action) => {
           break;
         case "cheap":
           sortByParam = sortByPrice;
+          break;
+        case "expensive":
+          sortByParam = sortByPriceExpensive;
           break;
         default:
           sortByParam = defaultSort;

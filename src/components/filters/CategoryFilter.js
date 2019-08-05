@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filterByCategory } from "../actions";
+import { filterByCategory } from "../../actions";
 
-const categories = [
+const CAREGORIES = [
   { ru: "НЕДВИЖИМОСТЬ", en: "immovable" },
   { ru: "ФОТОАППАРАТЫ", en: "cameras" },
   { ru: "АВТОМОБИЛИ", en: "auto" },
@@ -26,10 +26,10 @@ const FilterByCategory = () => {
         <option value="Любая категория" disabled>
           Любая категория
         </option>
-        {categories &&
-          categories.map(category => (
-            <option key={category.en} value={category.en}>
-              {category.ru}
+        {CAREGORIES &&
+          CAREGORIES.map(({ en, ru }) => (
+            <option key={en} value={en}>
+              {ru}
             </option>
           ))}
       </select>

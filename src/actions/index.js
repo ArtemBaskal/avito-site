@@ -6,6 +6,7 @@ import {
   FILTER_BY_PRICE,
   SORT_BY_PARAM
 } from "./types";
+// import history from "../history";
 
 export const fetchProducts = () => async dispatch => {
   const products = await axios.get("https://avito.dump.academy/products");
@@ -23,6 +24,7 @@ export const fetchProducts = () => async dispatch => {
 };
 
 export const addItemToFavorites = item => {
+  // history.push("/favorites");
   return {
     type: ADD_ITEM_TO_FAVORITES,
     payload: item

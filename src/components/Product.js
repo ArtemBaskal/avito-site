@@ -6,15 +6,17 @@ const Product = props => {
   const { title, pictures, price, sellerName, sellerRating } = props;
   const dispatch = useDispatch();
 
+  const params = { ...props, date: Date.now() };
+
   const onItemClick = () => {
-    dispatch(addItemToFavorites(props));
+    dispatch(addItemToFavorites(params));
   };
   return (
     <div onClick={onItemClick}>
       <div>{title}</div>
       <img src={pictures[0]} alt={title} />
       <div>Ещё {pictures.length} фото</div>
-      <div>{price ? `${price} ₽` : null}</div>
+      <div>{price ? `${price} ₽` : "Цена не указана"}</div>
       <div>{sellerName}</div>
       <div>{sellerRating}</div>
       <br />

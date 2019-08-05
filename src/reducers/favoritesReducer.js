@@ -10,7 +10,10 @@ export default (state = [], action) => {
         alert("Ошибка! В localStorage превышен лимит, оно будет очищено.");
         localStorage.clear();
       }
-      return { ...state, [action.payload.id]: action.payload };
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      };
     default:
       return state;
   }

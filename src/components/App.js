@@ -1,18 +1,16 @@
 import React from "react";
-import ProductsList from "./ProductsList";
-import CategoryFilter from "./CategoryFilter";
-import PriceFilter from "./PriceFilter";
-import Sorting from "./Sorting";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "../history";
+import FavoritesPage from "../Pages/FavoritesPage";
+import MainPage from "../Pages/MainPage";
 
-const App = () => {
-  return (
-    <div>
-      <CategoryFilter />
-      <PriceFilter />
-      <Sorting />
-      <ProductsList />
-    </div>
-  );
-};
+const App = () => (
+  <Router history={history}>
+    <Switch>
+      <Route path="/" exact component={MainPage} />
+      <Route path="/favorites" exact component={FavoritesPage} />
+    </Switch>
+  </Router>
+);
 
 export default App;

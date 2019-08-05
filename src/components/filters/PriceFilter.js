@@ -1,5 +1,5 @@
 import React from "react";
-import { filterByPrice } from "../actions";
+import { filterByPrice } from "../../actions";
 import { connect } from "react-redux";
 import "./PriceFilter";
 
