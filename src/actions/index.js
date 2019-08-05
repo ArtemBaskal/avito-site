@@ -6,29 +6,19 @@ import {
   FILTER_BY_PRICE,
   SORT_BY_PARAM
 } from "./types";
-// import history from "../history";
 
 export const fetchProducts = () => async dispatch => {
-  const products = await axios.get("https://avito.dump.academy/products");
-  const sellers = await axios.get("https://avito.dump.academy/sellers");
+  const api = "https://avito.dump.academy";
 
   const productsData = {
-    products: products.data.data,
-    sellers: sellers.data.data
+    products: (await axios.get(`${api}/products`)).data.data,
+    sellers: (await axios.get(`${api}/sellers`)).data.data
   };
 
   return dispatch({
     type: FETCH_PRODUCTS,
     payload: productsData
   });
-};
-
-export const addItemToFavorites = item => {
-  // history.push("/favorites");
-  return {
-    type: ADD_ITEM_TO_FAVORITES,
-    payload: item
-  };
 };
 
 export const filterByCategory = category => {
@@ -49,5 +39,12 @@ export const sortByParam = param => {
   return {
     type: SORT_BY_PARAM,
     payload: param
+  };
+};
+
+export const addItemToFavorites = item => {
+  return {
+    type: ADD_ITEM_TO_FAVORITES,
+    payload: item
   };
 };

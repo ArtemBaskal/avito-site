@@ -11,6 +11,8 @@ class FilterByCategory extends React.Component {
   };
 
   render() {
+    // this.props.products.products &&
+    //   console.log("LENGHT", this.props.products.products.length);
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
@@ -32,7 +34,10 @@ class FilterByCategory extends React.Component {
               max={Infinity}
               onChange={e => this.setState({ maxPrice: e.target.value })}
             />
-            <button type="submit">Найти</button>
+            <button type="submit">
+              {this.props.products.products &&
+                `Показать ${this.props.products.products.length} объявлений`}
+            </button>
           </div>
         </form>
       </div>
@@ -40,7 +45,11 @@ class FilterByCategory extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  products: state.products
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { filterByPrice }
 )(FilterByCategory);

@@ -9,7 +9,7 @@ export default function FavoritesList() {
       .map(adv => {
         return JSON.parse(adv);
       })
-      .sort((adv1, adv2) => adv2.date - adv1.date);
+      .sort((adv1, adv2) => adv1.timestamp - adv2.timestamp);
   } catch (e) {
     alert(
       "Ошибка! Неверный формат элемента (нестроковый тип) в localStorage. Оно будет очищено."
@@ -18,7 +18,6 @@ export default function FavoritesList() {
     localStorage.clear();
     sortedParsedList = [];
   }
-  console.log(sortedParsedList);
   //TODO: отдельный компоненты для избранного продукта
   return (
     <div>

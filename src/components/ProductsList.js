@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { fetchProducts } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Product from "./Product";
+import "../styles/ProductsList.css";
 
 const ProductsList = state => {
   const apiProducts = useSelector(state => state.products);
@@ -13,7 +14,7 @@ const ProductsList = state => {
   }, []);
 
   return (
-    <div>
+    <div className="products-list">
       {apiProducts.products &&
         apiProducts.products.map(
           ({ id, title, pictures, price, relationships: { seller } }) => {

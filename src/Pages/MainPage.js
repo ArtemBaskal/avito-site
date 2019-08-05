@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "../components/Header";
 import ProductsList from "../components/ProductsList";
 
 const MainPage = () => (
-  <Fragment>
+  <div>
     <Header />
     <ProductsList />
-  </Fragment>
+  </div>
 );
 
 export default MainPage;

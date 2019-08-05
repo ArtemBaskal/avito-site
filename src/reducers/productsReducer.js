@@ -34,35 +34,35 @@ export default (state = [], action) => {
         sellers
       };
     }
-    case SORT_BY_PARAM:
-      // const { products, sellers } = state;
+    case SORT_BY_PARAM: {
+      const { products, sellers } = state;
 
-      //TODO: Опционально - добавить сортировку по убыванию
-      const sortByPriceExpensive = products =>
-        products
+      const sortByPrice = price => products => {
+        let sortCallback;
+        const cheapFirst = (a, b) => a.price - b.price;
+        const expensiveFirst = (a, b) => b.price - a.price;
+
+        if (price === "cheap") {
+          sortCallback = cheapFirst;
+        } else if (price === "expensive") {
+          sortCallback = expensiveFirst;
+        }
+
+        return products
           .map(product => {
             if (!product.price) {
               product.price = 0;
             }
             return product;
           })
-          .sort((a, b) => b.price - a.price);
-
-      const sortByPrice = products =>
-        products
-          .map(product => {
-            if (!product.price) {
-              product.price = 0;
-            }
-            return product;
-          })
-          .sort((a, b) => a.price - b.price);
+          .sort(sortCallback);
+      };
 
       const sortByRating = products =>
         products.sort(
           (a, b) =>
-            state.sellers[b.relationships.seller].rating -
-            state.sellers[a.relationships.seller].rating
+            sellers[b.relationships.seller].rating -
+            sellers[a.relationships.seller].rating
         );
 
       const defaultSort = products => products;
@@ -73,20 +73,20 @@ export default (state = [], action) => {
           sortByParam = sortByRating;
           break;
         case "cheap":
-          sortByParam = sortByPrice;
+          sortByParam = sortByPrice(action.payload);
           break;
         case "expensive":
-          sortByParam = sortByPriceExpensive;
+          sortByParam = sortByPrice(action.payload);
           break;
         default:
           sortByParam = defaultSort;
       }
 
       return {
-        products: sortByParam(state.products),
-        sellers: state.sellers
+        products: sortByParam(products),
+        sellers: sellers
       };
-
+    }
     default:
       return state;
   }

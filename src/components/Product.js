@@ -1,27 +1,49 @@
 import React from "react";
 import { addItemToFavorites } from "../actions";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import "../styles/Product.css";
 
-const Product = props => {
-  const { title, pictures, price, sellerName, sellerRating } = props;
-  const dispatch = useDispatch();
+class Product extends React.Component {
+  params = { ...this.props, timestamp: Date.now() };
 
-  const params = { ...props, date: Date.now() };
-
-  const onItemClick = () => {
-    dispatch(addItemToFavorites(params));
+  onHeartClick = () => {
+    this.props.addItemToFavorites(this.params);
   };
-  return (
-    <div onClick={onItemClick}>
-      <div>{title}</div>
-      <img src={pictures[0]} alt={title} />
-      <div>Ещё {pictures.length} фото</div>
-      <div>{price ? `${price} ₽` : "Цена не указана"}</div>
-      <div>{sellerName}</div>
-      <div>{sellerRating}</div>
-      <br />
-    </div>
-  );
-};
 
-export default Product;
+  heartStyle = id => {
+    let style = "js-favorites-add-icon";
+    if (localStorage[id]) style += " selected";
+    return style;
+  };
+
+  render() {
+    const { id, title, pictures, price, sellerName, sellerRating } = this.props;
+    // const { heartStyle, onHeartClick } = this;
+    return (
+      <div className="product">
+        <i className={this.heartStyle(id)} onClick={this.onHeartClick} />
+        <header>
+          <img src={pictures[0]} alt={title} className="product-image" />
+          <div className="img-number">{pictures.length}</div>
+        </header>
+        <div>
+          <span className="title">{title}</span>
+          <span className="price">
+            {price ? `${price} ₽` : "Цена не указана"}
+          </span>
+          <div>{sellerName}</div>
+          <div>{sellerRating}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  favorites: state.favorites
+});
+
+export default connect(
+  mapStateToProps,
+  { addItemToFavorites }
+)(Product);
