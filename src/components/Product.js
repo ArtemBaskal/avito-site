@@ -10,18 +10,15 @@ class Product extends React.Component {
     this.props.addItemToFavorites(this.params);
   };
 
-  heartStyle = id => {
-    let style = "js-favorites-add-icon";
-    if (localStorage[id]) style += " selected";
-    return style;
-  };
-
   render() {
     const { id, title, pictures, price, sellerName, sellerRating } = this.props;
-    // const { heartStyle, onHeartClick } = this;
     return (
       <div className="product">
-        <i className={this.heartStyle(id)} onClick={this.onHeartClick} />
+        <i
+          className={`js-favorites-add-icon ${localStorage[id] && `selected`}`}
+          onClick={this.onHeartClick}
+        />
+
         <header>
           <img src={pictures[0]} alt={title} className="product-image" />
           <div className="img-number">{pictures.length}</div>
