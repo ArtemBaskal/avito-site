@@ -3,12 +3,12 @@ import FavoritesLink from "./FavoritesLink";
 import CategoryFilter from "./filters/CategoryFilter";
 import PriceFilter from "./filters/PriceFilter";
 import Sorting from "./Sorting";
-import AvitoLink from "./AvitoLink";
+import Navigation from "./Navigation";
 
 const Header = () => (
   <div>
-    <AvitoLink />
     <FavoritesLink />
+    <Navigation />
     <CategoryFilter />
     <PriceFilter />
     <Sorting />

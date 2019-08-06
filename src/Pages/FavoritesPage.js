@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "../components/Header";
 import FavoritesList from "../components/FavoritesList";
 
 const FavoritesPage = () => (
-  <Fragment>
+  <div>
     <Header />
     <FavoritesList />
-  </Fragment>
+  </div>
 );
 
 export default FavoritesPage;

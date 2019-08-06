@@ -2,7 +2,6 @@
   line-height: 1.5;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font: 13px/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
-  cursor: pointer;
 }
 
 .product .price {
@@ -12,12 +11,16 @@
 
 .product .title {
   color: #0091d9;
+  cursor: pointer;
 }
 
 .product .title:hover {
   color: #ff6163;
 }
 
+.product .product-header {
+  cursor: pointer;
+}
 .product .product-image {
   max-width: 208px;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { sortByParam } from "../actions";
+import "../styles/Sorting.css";
 
 const OPRIONS = [
   { en: "default", ru: "По умолчанию" },
@@ -18,11 +19,12 @@ const Sorting = () => {
 
   return (
     <div>
-      Сортировать
+      <label className="sorting-label">Сортировать</label>
       <select
         name="type"
         defaultValue="По умолчанию"
         onChange={handleSortSelect}
+        className="sorting-select"
       >
         {OPRIONS &&
           OPRIONS.map(({ en, ru }) => (

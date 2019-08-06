@@ -1,0 +1,18 @@
+.sorting-select {
+  line-height: 28px;
+  /* padding: 0 24px 0 8px; */
+  width: 127px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.sorting-label {
+  display: block;
+  height: auto;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #4d4d4d;
+  padding-bottom: 5px;
+}

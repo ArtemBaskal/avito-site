@@ -1,0 +1,11 @@
+.category-filter-select {
+  border-width: 3px;
+  border-color: #adadad;
+  border-radius: 2px;
+  width: 200px;
+  height: 30px;
+}
+
+.category-filter-option {
+  background-color: rgb(216, 216, 216);
+}

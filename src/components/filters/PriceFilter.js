@@ -1,7 +1,7 @@
 import React from "react";
 import { filterByPrice } from "../../actions";
 import { connect } from "react-redux";
-import "./PriceFilter";
+import "../../styles/PriceFilter.css";
 
 class FilterByCategory extends React.Component {
   state = { maxPrice: "", minPrice: "" };
@@ -15,8 +15,8 @@ class FilterByCategory extends React.Component {
     //   console.log("LENGHT", this.props.products.products.length);
     return (
       <div>
-        <form onSubmit={this.onFormSubmit}>
-          <label>Цена</label>
+        <form onSubmit={this.onFormSubmit} className="price-filter-form">
+          <label className="price-filter-label">Цена</label>
           <div>
             <input
               type="number"
@@ -25,6 +25,7 @@ class FilterByCategory extends React.Component {
               min={0}
               max={Infinity}
               onChange={e => this.setState({ minPrice: e.target.value })}
+              className="price-filter-input left"
             />
             <input
               type="number"
@@ -33,10 +34,12 @@ class FilterByCategory extends React.Component {
               min={0}
               max={Infinity}
               onChange={e => this.setState({ maxPrice: e.target.value })}
+              className="price-filter-input right"
             />
-            <button type="submit">
-              {this.props.products.products &&
-                `Показать ${this.props.products.products.length} объявлений`}
+            <button type="submit" className="price-filter-btn right">
+              {this.props.products.products
+                ? `Показать ${this.props.products.products.length} объявлений`
+                : "Показать объявления"}
             </button>
           </div>
         </form>

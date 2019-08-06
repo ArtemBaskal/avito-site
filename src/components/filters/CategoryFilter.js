@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterByCategory } from "../../actions";
+import "../../styles/CategoryFilter.css";
 
-const CAREGORIES = [
-  { ru: "НЕДВИЖИМОСТЬ", en: "immovable" },
-  { ru: "ФОТОАППАРАТЫ", en: "cameras" },
-  { ru: "АВТОМОБИЛИ", en: "auto" },
-  { ru: "НОУТБУКИ", en: "laptops" }
+export const CAREGORIES = [
+  { ru: "Недвижимость", en: "immovable" },
+  { ru: "Автомобили", en: "auto" },
+  { ru: "Фотоаппараты", en: "cameras" },
+  { ru: "Ноутбуки", en: "laptops" }
 ];
 
 const FilterByCategory = () => {
@@ -22,14 +23,15 @@ const FilterByCategory = () => {
         name="type"
         onChange={handleFilterSelect}
         defaultValue="Любая категория"
+        className="category-filter-select"
       >
         <option value="Любая категория" disabled>
           Любая категория
         </option>
         {CAREGORIES &&
           CAREGORIES.map(({ en, ru }) => (
-            <option key={en} value={en}>
-              {ru}
+            <option key={en} value={en} className="category-filter-option">
+              {ru.toUpperCase()}
             </option>
           ))}
       </select>

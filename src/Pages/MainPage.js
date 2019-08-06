@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import ProductsList from "../components/ProductsList";
 
 const MainPage = () => (
-  <div>
+  <div className="main-page">
     <Header />
     <ProductsList />
   </div>
