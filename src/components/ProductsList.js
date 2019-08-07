@@ -11,7 +11,7 @@ const ProductsList = state => {
   useEffect(() => {
     dispatch(fetchProducts(apiProducts.id));
     // eslint-disable-next-line
-  }, []);
+  }, {});
 
   return (
     <div className="products-list">

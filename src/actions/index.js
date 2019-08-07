@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   FETCH_PRODUCTS,
-  ADD_ITEM_TO_FAVORITES,
+  CHANGE_FAVORITE_STATUS,
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   SORT_BY_PARAM
@@ -42,9 +42,9 @@ export const sortByParam = param => {
   };
 };
 
-export const addItemToFavorites = item => {
+export const changeFavoriteStatus = item => {
   return {
-    type: ADD_ITEM_TO_FAVORITES,
+    type: CHANGE_FAVORITE_STATUS,
     payload: item
   };
 };

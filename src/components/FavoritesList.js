@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-export default function FavoritesList() {
+const FavoritesList = ({ isSmall }) => {
   //localStorage хранит файлы в случайном порядке, сортируем их по дате добавления - новые сверху
   let sortedParsedList;
   try {
@@ -19,8 +19,12 @@ export default function FavoritesList() {
     sortedParsedList = [];
   }
   //TODO: отдельный компоненты для избранного продукта
+
   return (
     <div>
+      {!!sortedParsedList.length && (
+        <h3 className="favorites-title">Избранное</h3>
+      )}
       {sortedParsedList.map(
         ({ id, title, pictures, price, sellerName, sellerRating }) => (
           <Product
@@ -31,9 +35,13 @@ export default function FavoritesList() {
             pictures={pictures}
             sellerName={sellerName}
             sellerRating={sellerRating}
+            isFavorite
+            isSmall={isSmall}
           />
         )
       )}
     </div>
   );
-}
+};
+
+export default FavoritesList;

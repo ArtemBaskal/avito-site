@@ -1,5 +1,5 @@
 import React from "react";
-import { addItemToFavorites } from "../actions";
+import { changeFavoriteStatus } from "../actions";
 import { connect } from "react-redux";
 import "../styles/Product.css";
 
@@ -7,21 +7,43 @@ class Product extends React.Component {
   params = { ...this.props, timestamp: Date.now() };
 
   onHeartClick = () => {
-    this.props.addItemToFavorites(this.params);
+    const { changeFavoriteStatus, isFavorite, isSmall } = this.props;
+    isFavorite && !isSmall && window.location.reload();
+    changeFavoriteStatus(this.params);
   };
 
+  classNamy = () => {
+    if (this.props.isSmall) return `small`;
+    if (this.props.isFavorite && !this.props.isSmall)
+      return `fav-js-favorites-add-icon`;
+    else
+      return `js-favorites-add-icon ${localStorage[this.props.id] &&
+        `selected`}`;
+  };
   render() {
-    const { id, title, pictures, price, sellerName, sellerRating } = this.props;
+    const {
+      id,
+      title,
+      pictures,
+      price,
+      sellerName,
+      sellerRating,
+      isFavorite,
+      isSmall
+    } = this.props;
     return (
       <div className="product">
         <header title={`Объявление ${title}`} className="product-header">
           <i
-            className={`js-favorites-add-icon ${localStorage[id] &&
-              `selected`}`}
+            className={this.classNamy()}
             onClick={this.onHeartClick}
             title="Добавить в избранное и в сравнение"
           />
-          <img src={pictures[0]} alt={title} className="product-image" />
+          <img
+            src={pictures[0]}
+            alt={title}
+            className={isFavorite ? "fav-product-image" : "product-image"}
+          />
           <div className="img-number">{pictures.length}</div>
         </header>
         <div>
@@ -29,10 +51,14 @@ class Product extends React.Component {
             {title}
           </span>
           <span className="price">
-            {price ? `${price} ₽` : "Цена не указана"}
+            {price ? `${price.toLocaleString()} ₽` : "Цена не указана"}
           </span>
-          <div>{sellerName}</div>
-          <div>{sellerRating}</div>
+          {!isSmall && (
+            <div>
+              <div>{sellerName}</div>
+              <div>{sellerRating}</div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -45,5 +71,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addItemToFavorites }
+  { changeFavoriteStatus }
 )(Product);

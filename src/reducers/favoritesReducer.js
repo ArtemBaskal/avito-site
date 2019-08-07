@@ -1,13 +1,19 @@
-import { ADD_ITEM_TO_FAVORITES } from "../actions/types";
+import { CHANGE_FAVORITE_STATUS } from "../actions/types";
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
-    case ADD_ITEM_TO_FAVORITES:
+    case CHANGE_FAVORITE_STATUS:
+      const { id } = action.payload;
       try {
-        if (!localStorage[action.payload.id]) {
-          localStorage[action.payload.id] = JSON.stringify(action.payload);
+        if (!localStorage[id]) {
+          localStorage[id] = JSON.stringify(action.payload);
         } else {
-          delete localStorage[action.payload.id];
+          delete localStorage[id];
+          delete state[id];
+          return {
+            ...state
+            // [id]: null
+          };
         }
       } catch (e) {
         console.error(e);
@@ -16,7 +22,7 @@ export default (state = [], action) => {
       }
       return {
         ...state,
-        [action.payload.id]: action.payload
+        [id]: action.payload
       };
     default:
       return state;

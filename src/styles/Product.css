@@ -21,6 +21,7 @@
 .product .product-header {
   cursor: pointer;
 }
+
 .product .product-image {
   max-width: 208px;
 }
@@ -30,13 +31,11 @@
   transform: translate(4px, -26px);
   display: flex;
   z-index: 100;
-  /* bottom: 24px;
-  left: 3px; */
   justify-content: center;
   align-items: center;
   height: 17.69px;
   width: 17px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
 }
@@ -52,4 +51,36 @@
 
 .selected {
   background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
+}
+
+.product .fav-product-image {
+  max-width: 140px;
+}
+
+.fav-js-favorites-add-icon {
+  position: absolute;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  transform: translate(145px, -8px);
+  background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
+}
+
+.small {
+  position: absolute;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  /* transform: translate(145px, -8px); */
+  background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
+}
+
+.small:hover {
+  position: absolute;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  /* transform: translate(145px, -8px); */
+  background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
+  background-color: rgba(0, 0, 0, 0.4);
 }

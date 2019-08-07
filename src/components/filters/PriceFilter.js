@@ -36,7 +36,7 @@ class FilterByCategory extends React.Component {
               onChange={e => this.setState({ maxPrice: e.target.value })}
               className="price-filter-input right"
             />
-            <button type="submit" className="price-filter-btn right">
+            <button type="submit" className="price-filter-btn">
               {this.props.products.products
                 ? `Показать ${this.props.products.products.length} объявлений`
                 : "Показать объявления"}

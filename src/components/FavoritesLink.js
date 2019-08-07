@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/FavoritesLink.css";
 
 const FavoritesLink = () => (
-  <Fragment>
+  <ul className="favorites-link">
     <Link to="/favorites">
       <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -12,7 +13,7 @@ const FavoritesLink = () => (
         />
       </svg>
     </Link>
-  </Fragment>
+  </ul>
 );
 
 export default FavoritesLink;
