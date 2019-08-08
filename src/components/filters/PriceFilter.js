@@ -23,9 +23,6 @@ const INITIAL_STATE = {
   minPrice: { value: "", isBlured: true }
 };
 
-
-//let MIN = "";
-
 class FilterByCategory extends React.Component {
   state = INITIAL_STATE;
 
@@ -42,43 +39,33 @@ class FilterByCategory extends React.Component {
   };
 
   onInputBlur = ({ target: { id } }) => {
+    const { minPrice, maxPrice } = this.state;
 
-  //TODO: ЕСЛИ ПРАВАЯ ЦЕНА МЕНЬШЕ ЛЕВОЙ, ТО МЕНЯТЬ ИХ МЕСТАМИ
-    // // const val = value;
-    // console.log(value);
-    // MIN = id === "maxPrice" ? value : null;
-    // console.log(MIN);
-    // console.log(
-    //   id === "maxPrice" &&
-    //     this.state.maxPrice.value &&
-    //     Number(this.state.minPrice.value.replace(/\D/g, "")) >
-    //       Number(this.state.maxPrice.value.replace(/\D/g, "")),
-    //   this.state
-    // );
-    // if (
-    //   id === "maxPrice" &&
-    //   this.state.maxPrice.value &&
-    //   Number(this.state.minPrice.value.replace(/\D/g, "")) >
-    //     Number(this.state.maxPrice.value.replace(/\D/g, ""))
-    // ) {
-    //   this.setState({
-    //     minPrice: {
-    //       value: this.state.maxPrice.isBlured,
-    //       isBlured: this.state.minPrice.isBlured
-    //     },
-    //     maxPrice: {
-    //       value: MIN,
-    //       isBlured: this.state.maxPrice.isBlured
-    //     }
-    //   });
-    // }
+    if (
+      maxPrice.value &&
+      Number(minPrice.value.replace(/\D/g, "")) >
+        Number(maxPrice.value.replace(/\D/g, ""))
+    ) {
+      const copyMinPriceState = { ...this.state.minPrice };
 
-    this.setState({
-      [id]: {
-        ...this.state[id],
-        isBlured: !this.state[id].isBlured
-      }
-    });
+      this.setState(state => ({
+        minPrice: {
+          ...state.maxPrice,
+          isBlured: true
+        },
+        maxPrice: {
+          ...copyMinPriceState,
+          isBlured: true
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        [id]: {
+          ...state[id],
+          isBlured: !state[id].isBlured
+        }
+      }));
+    }
   };
 
   formatPrice = (price, isBlured) => {
