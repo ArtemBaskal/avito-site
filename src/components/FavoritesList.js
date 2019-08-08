@@ -18,7 +18,6 @@ const FavoritesList = ({ isSmall }) => {
     localStorage.clear();
     sortedParsedList = [];
   }
-  //TODO: отдельный компоненты для избранного продукта
 
   return (
     <div>

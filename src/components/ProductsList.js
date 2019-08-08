@@ -9,7 +9,7 @@ const ProductsList = state => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts(apiProducts.id));
+    dispatch(fetchProducts());
     // eslint-disable-next-line
   }, {});
 

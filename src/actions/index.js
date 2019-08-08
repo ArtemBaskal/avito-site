@@ -7,12 +7,12 @@ import {
   SORT_BY_PARAM
 } from "./types";
 
-export const fetchProducts = () => async dispatch => {
-  const api = "https://avito.dump.academy";
+const API = "https://avito.dump.academy";
 
+export const fetchProducts = () => async dispatch => {
   const productsData = {
-    products: (await axios.get(`${api}/products`)).data.data,
-    sellers: (await axios.get(`${api}/sellers`)).data.data
+    products: (await axios.get(`${API}/products`)).data.data,
+    sellers: (await axios.get(`${API}/sellers`)).data.data
   };
 
   return dispatch({
@@ -21,18 +21,31 @@ export const fetchProducts = () => async dispatch => {
   });
 };
 
-export const filterByCategory = category => {
-  return {
-    type: FILTER_BY_CATEGORY,
-    payload: category
+export const filterByCategory = filterCategory => async dispatch => {
+  //TODO: EPIC
+  const productsData = {
+    products: (await axios.get(`${API}/products`)).data.data.filter(
+      ({ category }) => category === filterCategory
+    ),
+    sellers: (await axios.get(`${API}/sellers`)).data.data
   };
+
+  return dispatch({
+    type: FILTER_BY_CATEGORY,
+    payload: productsData
+  });
 };
 
-export const filterByPrice = minMaxPrice => {
-  return {
-    type: FILTER_BY_PRICE,
-    payload: minMaxPrice
+export const filterByPrice = minMaxPrice => async dispatch => {
+  //TODO: EPIC
+  const productsData = {
+    products: (await axios.get(`${API}/products`)).data.data,
+    sellers: (await axios.get(`${API}/sellers`)).data.data
   };
+  return dispatch({
+    type: FILTER_BY_PRICE,
+    payload: { ...minMaxPrice, ...productsData }
+  });
 };
 
 export const sortByParam = param => {

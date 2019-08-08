@@ -29,8 +29,10 @@ export default function radixSort(arr, sortByKey, order) {
       digitBuckets[digit].push(arr[i]);
     }
 
+    //eslint-disable-next-line
     (function flatten() {
-      const cb = (bucket, current) => (arr = [] = bucket.concat(current));
+      arr = [];
+      const cb = (bucket, current) => (arr = bucket.concat(current));
 
       return order === "ASC"
         ? digitBuckets.reduce(cb)
