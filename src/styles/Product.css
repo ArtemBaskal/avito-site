@@ -27,8 +27,9 @@
 }
 
 .product .img-number {
-  position: absolute;
-  transform: translate(4px, -26px);
+  position: relative;
+  left: 3px;
+  bottom: 25px;
   display: flex;
   z-index: 100;
   justify-content: center;
@@ -41,16 +42,14 @@
 }
 
 .js-favorites-add-icon {
-  position: absolute;
+  position: relative;
   display: flex;
+  transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 3);
   width: 36px;
   height: 36px;
-  transform: translateX(172px);
+  left: 172px;
+  top: 40px;
   background-image: url(https://www.avito.st/s/cc/resources/b127d52fdfb0.svg);
-}
-
-.selected {
-  background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
 }
 
 .product .fav-product-image {
@@ -58,29 +57,36 @@
 }
 
 .fav-js-favorites-add-icon {
-  position: absolute;
+  position: relative;
   display: flex;
   width: 36px;
   height: 36px;
-  transform: translate(145px, -8px);
+  left: 150px;
+  top: 27px;
   background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
 }
 
 .small {
-  position: absolute;
+  position: relative;
   display: flex;
   width: 36px;
   height: 36px;
-  /* transform: translate(145px, -8px); */
-  background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
+  left: 104px;
+  top: 35px;
+  background-image: url(https://www.avito.st/s/cc/resources/b127d52fdfb0.svg);
 }
 
 .small:hover {
-  position: absolute;
-  display: flex;
-  width: 36px;
-  height: 36px;
-  /* transform: translate(145px, -8px); */
+  transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 3);
+  transform: scale(1.2, 1.2);
+  /* width: 46px;
+   */
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  /* background-size: 24px, 36px; */
+  /* background-size: 46px; */
+}
+
+.selected {
   background-image: url(https://www.avito.st/s/cc/resources/8a6950657d55.svg);
-  background-color: rgba(0, 0, 0, 0.4);
 }

@@ -4,8 +4,7 @@ import {
   FILTER_BY_PRICE,
   SORT_BY_PARAM
 } from "../actions/types";
-
-//TODO: RADIX SORT
+import radixSort from "../helpers/radixSort";
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -83,7 +82,7 @@ export default (state = [], action) => {
       }
 
       return {
-        products: sortByParam(products),
+        products: radixSort(products, "price"), //TODO: finish refactoring
         sellers: sellers
       };
     }

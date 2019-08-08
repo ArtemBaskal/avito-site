@@ -12,13 +12,11 @@ class Product extends React.Component {
     changeFavoriteStatus(this.params);
   };
 
-  classNamy = () => {
-    if (this.props.isSmall) return `small`;
-    if (this.props.isFavorite && !this.props.isSmall)
-      return `fav-js-favorites-add-icon`;
-    else
-      return `js-favorites-add-icon ${localStorage[this.props.id] &&
-        `selected`}`;
+  classNamy = (id, isFavorite, isSmall) => {
+    if (isSmall) return `small ${localStorage[id] ? `selected` : ``}`;
+    if (isFavorite && !isSmall) return `fav-js-favorites-add-icon`;
+    if (!isSmall)
+      return `js-favorites-add-icon ${localStorage[id] ? `selected` : ``}`;
   };
   render() {
     const {
@@ -35,7 +33,7 @@ class Product extends React.Component {
       <div className="product">
         <header title={`Объявление ${title}`} className="product-header">
           <i
-            className={this.classNamy()}
+            className={this.classNamy(id, isFavorite, isSmall)}
             onClick={this.onHeartClick}
             title="Добавить в избранное и в сравнение"
           />

@@ -1,4 +1,4 @@
-//O(n*k), k - length of largest number
+// //O(n*k), n - length of array, k - length of largest number
 
 function getDigit(num, i) {
   return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
@@ -17,15 +17,18 @@ function mostDigits(nums) {
   return maxDigits;
 }
 
-export default function radixSort(nums) {
+export default function radixSort(arr, sortByKey) {
+  let nums = arr.map(obj => obj[sortByKey] || 0);
   let maxDigitCount = mostDigits(nums);
   for (let k = 0; k < maxDigitCount; k++) {
     let digitBuckets = Array.from({ length: 10 }, () => []);
-    for (let i = 0; i < nums.length; i++) {
-      let digit = getDigit(nums[i], k);
-      digitBuckets[digit].push(nums[i]);
+
+    for (let i = 0; i < arr.length; i++) {
+      let digit = getDigit(arr[i][sortByKey] || 0, k);
+      digitBuckets[digit].push(arr[i]);
     }
-    nums = [].concat(...digitBuckets);
+    arr = [];
+    digitBuckets.map(bucket => bucket.map(value => arr.push(value)));
   }
-  return nums;
+  return arr;
 }
