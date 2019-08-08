@@ -11,8 +11,6 @@ class FilterByCategory extends React.Component {
   };
 
   render() {
-    // this.props.products.products &&
-    //   console.log("LENGHT", this.props.products.products.length);
     return (
       <div>
         <form onSubmit={this.onFormSubmit} className="price-filter-form">

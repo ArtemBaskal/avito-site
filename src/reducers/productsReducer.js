@@ -10,6 +10,7 @@ export default (state = [], action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
       return action.payload;
+
     case FILTER_BY_CATEGORY:
       const { products, sellers } = state;
 
@@ -19,6 +20,7 @@ export default (state = [], action) => {
         ),
         sellers
       };
+
     case FILTER_BY_PRICE: {
       const { products, sellers } = state;
       let { minPrice, maxPrice } = action.payload;
@@ -33,59 +35,26 @@ export default (state = [], action) => {
         sellers
       };
     }
+
     case SORT_BY_PARAM: {
       const { products, sellers } = state;
-
-      const sortByPrice = price => products => {
-        let sortCallback;
-        const cheapFirst = (a, b) => a.price - b.price;
-        const expensiveFirst = (a, b) => b.price - a.price;
-
-        if (price === "cheap") {
-          sortCallback = cheapFirst;
-        } else if (price === "expensive") {
-          sortCallback = expensiveFirst;
-        }
-
-        return products
-          .map(product => {
-            if (!product.price) {
-              product.price = 0;
-            }
-            return product;
-          })
-          .sort(sortCallback);
-      };
+      const { param, order } = action.payload;
 
       const sortByRating = products =>
         products.sort(
-          (a, b) =>
-            sellers[b.relationships.seller].rating -
-            sellers[a.relationships.seller].rating
+          (productA, productB) =>
+            sellers[productB.relationships.seller].rating -
+            sellers[productA.relationships.seller].rating
         );
 
-      const defaultSort = products => products;
-
-      let sortByParam;
-      switch (action.payload) {
-        case "popular":
-          sortByParam = sortByRating;
-          break;
-        case "cheap":
-          sortByParam = sortByPrice(action.payload);
-          break;
-        case "expensive":
-          sortByParam = sortByPrice(action.payload);
-          break;
-        default:
-          sortByParam = defaultSort;
-      }
+      const sortByParam = param === "rating" ? sortByRating : radixSort;
 
       return {
-        products: radixSort(products, "price"), //TODO: finish refactoring
-        sellers: sellers
+        products: sortByParam(products, param, order),
+        sellers
       };
     }
+
     default:
       return state;
   }

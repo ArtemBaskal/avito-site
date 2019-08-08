@@ -3,18 +3,19 @@ import { useDispatch } from "react-redux";
 import { sortByParam } from "../actions";
 import "../styles/Sorting.css";
 
-const OPRIONS = [
-  { en: "default", ru: "По умолчанию" },
-  { en: "popular", ru: "Популярнее" },
-  { en: "cheap", ru: "Дешевле" },
-  { en: "expensive", ru: "Дороже" }
-];
+const OPTIONS = {
+  default: { order: "ASC", param: "id", en: "default", ru: "По умолчанию" },
+  popular: { order: "DESC", param: "rating", en: "popular", ru: "Популярнее" },
+  cheap: { order: "ASC", param: "price", en: "cheap", ru: "Дешевле" },
+  expensive: { order: "DESC", param: "price", en: "expensive", ru: "Дороже" }
+};
 
 const Sorting = () => {
   const dispatch = useDispatch();
 
   const handleSortSelect = e => {
-    dispatch(sortByParam(e.target.value));
+    const param = OPTIONS[e.target.value];
+    dispatch(sortByParam(param));
   };
 
   return (
@@ -26,8 +27,8 @@ const Sorting = () => {
         onChange={handleSortSelect}
         className="sorting-select"
       >
-        {OPRIONS &&
-          OPRIONS.map(({ en, ru }) => (
+        {OPTIONS &&
+          Object.values(OPTIONS).map(({ en, ru }) => (
             <option key={en} value={en}>
               {ru}
             </option>

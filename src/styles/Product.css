@@ -20,10 +20,13 @@
 
 .product .product-header {
   cursor: pointer;
+  max-width: 208px;
+  max-height: 250px;
 }
 
 .product .product-image {
   max-width: 208px;
+  max-height: 208px;
 }
 
 .product .img-number {
