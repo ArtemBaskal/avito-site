@@ -37,7 +37,6 @@ export const filterByCategory = filterCategory => async dispatch => {
 };
 
 export const filterByPrice = minMaxPrice => async dispatch => {
-  //TODO: EPIC
   const productsData = {
     products: (await axios.get(`${API}/products`)).data.data,
     sellers: (await axios.get(`${API}/sellers`)).data.data

@@ -20,7 +20,7 @@ export default (state = [], action) => {
 
       return {
         products: products.filter(
-          ({ price }) => price > minPrice && price < maxPrice
+          ({ price }) => (price || 0) > minPrice && (price || 0) < maxPrice
         ),
         sellers
       };
