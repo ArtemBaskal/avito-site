@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Avito-site/static/css/main.f59437ee.chunk.css",
+    "main.js": "/Avito-site/static/js/main.530a6005.chunk.js",
+    "main.js.map": "/Avito-site/static/js/main.530a6005.chunk.js.map",
+    "runtime~main.js": "/Avito-site/static/js/runtime~main.3446433e.js",
+    "runtime~main.js.map": "/Avito-site/static/js/runtime~main.3446433e.js.map",
+    "static/js/2.34047305.chunk.js": "/Avito-site/static/js/2.34047305.chunk.js",
+    "static/js/2.34047305.chunk.js.map": "/Avito-site/static/js/2.34047305.chunk.js.map",
+    "index.html": "/Avito-site/index.html",
+    "precache-manifest.999ddac2ffc250f9b9161d307f0fa688.js": "/Avito-site/precache-manifest.999ddac2ffc250f9b9161d307f0fa688.js",
+    "service-worker.js": "/Avito-site/service-worker.js",
+    "static/css/main.f59437ee.chunk.css.map": "/Avito-site/static/css/main.f59437ee.chunk.css.map"
+  }
+}
